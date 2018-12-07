@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../App.css';
 import * as classnames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
+import TodosRemaining from './TodosRemaining'
+ 
 class App extends Component {
   render() {
     return (
@@ -59,7 +60,8 @@ class App extends Component {
 
           <div className="extra-container">
             <div><label><input type="checkbox" checked={!this.anyRemaining()} onChange={this.checkAllTodos} /> Check All </label></div>
-            <div>{this.remaining()} items left</div>
+            {/* <div>{this.remaining()} items left</div> */}
+            <TodosRemaining remaining={this.remaining()} />
           </div>
 
           <div className="extra-container">
