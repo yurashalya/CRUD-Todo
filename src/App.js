@@ -21,7 +21,7 @@ class App extends Component {
               <input type="checkbox" />
               <div className="todo-item-label">{todo.title}</div>
             </div>
-            <div className="remove-item">
+            <div className="remove-item" onClick={(event) => this.deleteTodo(index)}>
               &times;
             </div>
           </div>
@@ -73,6 +73,10 @@ class App extends Component {
     if(event.key === "Enter") {
       const todoInput = this.todoInput.current.value;
 
+      if(todoInput.trim().length === 0) {
+        return;
+      }
+
       this.setState((prevState, props) => {
 
         let todos = prevState.todos;
@@ -86,7 +90,19 @@ class App extends Component {
 
         return { todos, idForTodo };
       });
+
+      this.todoInput.current.value = '';
     }
+  }
+
+  deleteTodo = (index) => {
+    this.setState((prevState, props) => {
+      let todos = prevState.todos;
+
+      todos.splice(index, 1);
+
+      return { todos };
+    });
   }
 }
 
