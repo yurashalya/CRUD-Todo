@@ -74,6 +74,7 @@ class App extends Component {
   todoInput = React.createRef();
 
   state = {
+    beforeEditCache: '',
     idForTodo: 3,
     todos: [
       {
@@ -161,6 +162,19 @@ class App extends Component {
       } else {
         todo.title = event.target.value;
       }
+
+      todos.splice(index, 1, todo);
+
+      return { todos };
+    });
+  }
+
+  cancelEdit = (todo, index, event) => {
+    this.setState((prevState, props) => {
+      let todos = prevState.todos;
+
+      todo.title = prevState.beforeEditCache;
+      todo.editing = false;
 
       todos.splice(index, 1, todo);
 
