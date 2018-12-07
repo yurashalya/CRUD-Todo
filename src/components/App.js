@@ -5,6 +5,7 @@ import * as classnames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TodosRemaining from './TodosRemaining'
 import TodoItem from './TodoItem'
+import TodosCheckAll from './TodosCheckAll'
  
 class App extends Component {
   render() {
@@ -17,8 +18,7 @@ class App extends Component {
           <input type="text" className="todo-input" placeholder="What needs to be done"
             ref={this.todoInput} onKeyUp={this.addTodo}
           />
-
-          
+ 
           <ReactCSSTransitionGroup
             transitionName="fade"
             transitionEnterTimeout={300}
@@ -41,8 +41,7 @@ class App extends Component {
           </ReactCSSTransitionGroup>
 
           <div className="extra-container">
-            <div><label><input type="checkbox" checked={!this.anyRemaining()} onChange={this.checkAllTodos} /> Check All </label></div>
-            {/* <div>{this.remaining()} items left</div> */}
+           <TodosCheckAll anyRemaining={this.anyRemaining} checkAllTodos={this.checkAllTodos} />
             <TodosRemaining remaining={this.remaining()} />
           </div>
 
