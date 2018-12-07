@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as classnames from 'classnames';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class App extends Component {
   render() {
@@ -16,6 +17,11 @@ class App extends Component {
           />
 
           
+          <ReactCSSTransitionGroup
+            transitionName="fade"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
+          >
           {this.todosFiltered().map((todo, index) => 
             <div key={todo.id} className="todo-item">
             <div className="todo-item-left">
@@ -49,8 +55,10 @@ class App extends Component {
           </div>
           )}
 
+          </ReactCSSTransitionGroup>
+
           <div className="extra-container">
-            <div><label><input type="checkbox" onChange={this.checkAllTodos} /> Check All </label></div>
+            <div><label><input type="checkbox" checked={!this.anyRemaining()} onChange={this.checkAllTodos} /> Check All </label></div>
             <div>{this.remaining()} items left</div>
           </div>
 
@@ -73,11 +81,18 @@ class App extends Component {
               </button>
             </div>
             
+            <ReactCSSTransitionGroup
+              transitionName="fade"
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={300}
+            >
             {this.todosCompletedCount() > 0 &&
             <div>
               <button onClick={this.clearCompleted}>Clear Complete</button>
             </div> 
             }
+
+            </ReactCSSTransitionGroup>
           </div>
 
         </div>
