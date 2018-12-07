@@ -4,6 +4,7 @@ import '../App.css';
 import * as classnames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TodosRemaining from './TodosRemaining'
+import TodoItem from './TodoItem'
  
 class App extends Component {
   render() {
@@ -24,36 +25,17 @@ class App extends Component {
             transitionLeaveTimeout={300}
           >
           {this.todosFiltered().map((todo, index) => 
-            <div key={todo.id} className="todo-item">
-            <div className="todo-item-left">
-              <input type="checkbox" onChange={(event) => this.checkTodo(todo, index, event)} checked={todo.completed}/>
-
-              {!todo.editing &&
-              <div 
-                className={classnames({'todo-item-label': true, 'completed': todo.completed})}
-                onDoubleClick={(event) => this.editTodo(todo, index, event)} 
-                > {todo.title}
-              </div>
-              }
-              {todo.editing &&
-              <input 
-                className="todo-item-edit" type="text" autoFocus
-                defaultValue={todo.title}
-                onBlur={(event) => this.doneEdit(todo, index, event)}
-                onKeyUp={(event) => {
-                  if (event.key === 'Enter') {
-                    this.doneEdit(todo, index, event);
-                  } else if (event.key === 'Escape') {
-                    this.cancelEdit(todo, index, event);
-                  }
-                }}
-              />
-              }
-            </div>
-            <div className="remove-item" onClick={(event) => this.deleteTodo(index)}>
-              &times;
-            </div>
-          </div>
+          <TodoItem 
+            key = {todo.id}
+            todo = {todo}
+            index = {index}
+            checkTodo={this.checkTodo}
+            editTodo={this.editTodo}
+            doneEdit={this.doneEdit}
+            cancelEdit={this.cancelEdit}
+            deleteTodo={this.deleteTodo}
+          />
+          
           )}
 
           </ReactCSSTransitionGroup>
