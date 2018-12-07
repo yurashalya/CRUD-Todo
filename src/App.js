@@ -19,7 +19,7 @@ class App extends Component {
           {this.todosFiltered().map((todo, index) => 
             <div key={todo.id} className="todo-item">
             <div className="todo-item-left">
-              <input type="checkbox" onChange={(event) => this.checkTodo(todo, index, event)} />
+              <input type="checkbox" onChange={(event) => this.checkTodo(todo, index, event)} checked={todo.completed}/>
 
               {!todo.editing &&
               <div 
@@ -50,7 +50,7 @@ class App extends Component {
           )}
 
           <div className="extra-container">
-            <div><label><input type="checkbox" /> Check All </label></div>
+            <div><label><input type="checkbox" onChange={this.checkAllTodos} /> Check All </label></div>
             <div>{this.remaining()} items left</div>
           </div>
 
@@ -232,8 +232,23 @@ class App extends Component {
 
     return this.state.todos;
   }
+
+  checkAllTodos = (event) => {
+
+    event.persist();
+
+    this.setState((prevState, props) => {
+      let todos = prevState.todos;
+
+      todos.forEach((todo) => todo.completed = event.target.checked);
+
+      return { todos };
+    });
+  }
 }
 
 
 
 export default App;
+
+
