@@ -18,8 +18,8 @@ class App extends Component {
           {this.state.todos.map((todo, index) => 
             <div key={todo.id} className="todo-item">
             <div className="todo-item-left">
-              <input type="checkbox" />
-              <div className="todo-item-label">{todo.title}</div>
+              <input type="checkbox" onChange={(event) => this.checkTodo(todo, index, event)} />
+              <div className={ "todo-item-label " + (todo.completed ? 'completed' : '')}>{todo.title}</div>
             </div>
             <div className="remove-item" onClick={(event) => this.deleteTodo(index)}>
               &times;
@@ -100,6 +100,17 @@ class App extends Component {
       let todos = prevState.todos;
 
       todos.splice(index, 1);
+
+      return { todos };
+    });
+  }
+
+  checkTodo = (todo, index, event) => {
+    this.setState((prevState, props) => {
+      let todos = prevState.todos;
+      todo.completed = !todo.completed;
+
+      todos.splice(index, 1, todo);
 
       return { todos };
     });
