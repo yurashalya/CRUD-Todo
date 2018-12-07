@@ -12,17 +12,18 @@ class App extends Component {
         <div className="Todo-container">
           <input type="text" className="todo-input" placeholder="What needs to be done" />
 
-          <div className="todo-item">
+          
+          {this.state.todos.map((todo, index) => 
+            <div key={todo.id} className="todo-item">
             <div className="todo-item-left">
               <input type="checkbox" />
-              <div class="todo-item-label">Todo Item 1</div>
-
+              <div className="todo-item-label">{todo.title}</div>
             </div>
-
             <div className="remove-item">
               &times;
             </div>
           </div>
+          )}
 
           <div className="extra-container">
             <div><label><input type="checkbox" /> Check All </label></div>
@@ -35,11 +36,32 @@ class App extends Component {
               <button>Active</button>
               <button>Completed</button>
             </div>
+
+            <div>
+              <button>Clear Complete</button>
+            </div> 
           </div>
 
         </div>
       </div>
     );
+  }
+
+  state = {
+    todos: [
+      {
+        'id': 1,
+        'title': 'OSDB - front-end development',
+        'completed': false,
+        'editing': false,
+      },
+      {
+        'id': 2,
+        'title': 'OSDB - back-end development',
+        'completed': false,
+        'editing': false,
+      }
+    ]
   }
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "crud-todo",
+  "name": "osdb-todo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
