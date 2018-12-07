@@ -9,8 +9,34 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <div clasName="Todo-container">
+        <div className="Todo-container">
           <input type="text" className="todo-input" placeholder="What needs to be done" />
+
+          <div className="todo-item">
+            <div className="todo-item-left">
+              <input type="checkbox" />
+              <div class="todo-item-label">Todo Item 1</div>
+
+            </div>
+
+            <div className="remove-item">
+              &times;
+            </div>
+          </div>
+
+          <div className="extra-container">
+            <div><label><input type="checkbox" /> Check All </label></div>
+            <div>2 items left</div>
+          </div>
+
+          <div className="extra-container">
+            <div>
+              <button>All</button>
+              <button>Active</button>
+              <button>Completed</button>
+            </div>
+          </div>
+
         </div>
       </div>
     );
