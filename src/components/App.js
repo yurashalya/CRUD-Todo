@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
-import '../App.css';
+import '../App.scss';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TodosRemaining from './TodosRemaining'
 import TodoItem from './TodoItem'
@@ -34,7 +34,7 @@ class App extends Component {
           {TodoStore.todosFiltered.map(todo => 
           <TodoItem 
             key = {todo.id}
-            todo = {todo}
+            todo = {todo} 
           />
           
           )}

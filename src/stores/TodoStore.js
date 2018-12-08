@@ -1,6 +1,7 @@
 import React from 'react';
 import { observable, action, computed } from 'mobx';
 
+
 class TodoStore {
   @observable todoInput = React.createRef();
   @observable filter = 'all';
@@ -94,7 +95,6 @@ class TodoStore {
     @action updateFilter = filter => {
         this.filter = filter;
     }
-
 
     @action clearCompleted = () => {
         this.todos = this.todos.filter(todo => !todo.completed);
