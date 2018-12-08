@@ -31,11 +31,10 @@ class App extends Component {
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
           >
-          {TodoStore.todosFiltered.map((todo, index) => 
+          {TodoStore.todosFiltered.map(todo => 
           <TodoItem 
             key = {todo.id}
             todo = {todo}
-            index = {index}
           />
           
           )}
@@ -67,7 +66,6 @@ class App extends Component {
     );
   }
 
-  // todoInput = React.createRef();
 
   state = {
     filter: 'all',
@@ -88,56 +86,6 @@ class App extends Component {
       }
     ]
   }
-
-  
-  // remaining = () => {
-  //   return this.state.todos.filter(todo => !todo.completed).length;
-  // }
-
-  // anyRemaining = () => {
-  //   return this.remaining() !== 0;
-  // }
-
-  // todosCompletedCount = () => {
-  //   return this.state.todos.filter(todo => todo.completed).length;
-  // }
-
-  // clearCompleted = () => {
-  //   this.setState((prevState, props) => {
-  //     return {
-  //       todos: prevState.todos.filter(todo => !todo.completed)
-  //     };
-  //   });
-  // }
-
-  // updateFilter = filter => {
-  //   this.setState({ filter });
-  // }
-
-  // todosFiltered = () => {
-  //   if (this.state.filter === 'all') {
-  //     return this.state.todos;
-  //   } else if (this.state.filter === 'active') {
-  //     return this.state.todos.filter(todo => !todo.completed);
-  //   } else if (this.state.filter === 'completed') {
-  //     return this.state.todos.filter(todo => todo.completed);
-  //   }
-
-  //   return this.state.todos;
-  // }
-
-  // checkAllTodos = (event) => {
-
-  //   event.persist();
-
-  //   this.setState((prevState, props) => {
-  //     let todos = prevState.todos;
-
-  //     todos.forEach((todo) => todo.completed = event.target.checked);
-
-  //     return { todos };
-  //   });
-  // }
 }
 
 
