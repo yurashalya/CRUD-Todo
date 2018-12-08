@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
-import * as classnames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TodosRemaining from './TodosRemaining'
 import TodoItem from './TodoItem'
 import TodosCheckAll from './TodosCheckAll'
+import TodosFiltered from './TodosFiltered'
+import TodosClearCompleted from './TodosClearCompleted'
  
 class App extends Component {
   render() {
@@ -41,44 +42,26 @@ class App extends Component {
           </ReactCSSTransitionGroup>
 
           <div className="extra-container">
-           <TodosCheckAll anyRemaining={this.anyRemaining} checkAllTodos={this.checkAllTodos} />
+            <TodosCheckAll anyRemaining={this.anyRemaining} checkAllTodos={this.checkAllTodos} />
             <TodosRemaining remaining={this.remaining()} />
           </div>
 
           <div className="extra-container">
-            <div>
-              <button 
-                onClick={() => this.updateFilter('all')}
-                className={classnames({'active': this.state.filter === 'all'})}
-              > All
-              </button>
-              <button
-                onClick={() => this.updateFilter('active')}
-                className={classnames({ 'active': this.state.filter === 'active' })}
-              > Active
-              </button>
-              <button 
-                onClick={() => this.updateFilter('completed')}
-                className={classnames({ 'active': this.state.filter === 'completed' })}
-              > Completed
-              </button>
-            </div>
-            
+            <TodosFiltered updateFilter={this.updateFilter} filter={this.state.filter} />
+
             <ReactCSSTransitionGroup
               transitionName="fade"
               transitionEnterTimeout={300}
               transitionLeaveTimeout={300}
             >
+
             {this.todosCompletedCount() > 0 &&
-            <div>
-              <button onClick={this.clearCompleted}>Clear Complete</button>
-            </div> 
+              <TodosClearCompleted clearCompleted={this.clearCompleted}  />
             }
-
             </ReactCSSTransitionGroup>
-          </div>
 
-        </div>
+          </div>
+        </div> 
       </div>
     );
   }
